@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 
-def get_meta_text_common(num):    
+def get_meta_text_common(num, url_list):    
     text_page_url = url_list[num]
     get_page_url = requests.get(text_page_url).text
     soup = BeautifulSoup(get_page_url, "html.parser")
@@ -32,7 +32,7 @@ def get_meta_text_common(num):
         return(text_join)
 
 
-def get_meta_text_over18(num):    
+def get_meta_text_over18(num, url_list, short_url_list):    
     text_page_url = url_list[num]
     payload = {
         'from':short_url_list[num],
