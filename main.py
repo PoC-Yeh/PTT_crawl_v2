@@ -15,11 +15,16 @@ over18_url_list, over18_short_url_list = get_page_url_over18("Gossiping", 23175)
 #output2 = pickle.dump(over18_short_url_list, open("Gossiping_short_url_list.txt", "wb"))
 #over18_url_list = pickle.load(open("Gossiping_url_list.txt", 'rb'))
 #over18_short_url_list = pickle.load(open("Gossiping_short_url_list.txt", 'rb'))
+bar = progressbar.ProgressBar(max_value=progressbar.UnknownLength)
 over18_text_list = []
 for i in range(0, len(over18_url_list)):
-    text_data = get_meta_text_over18(i, over18_url_list, over18_short_url_list)
-    over18_text_list.append(text_data)
-    
+    bar.update(i)
+    try:
+        text_data = get_meta_text_over18(i, over18_url_list, over18_short_url_list)
+        over18_text_list.append(text_data)
+    execpt:
+        continue
+        
 for text_a in over18_text_list:
     print(text_a)
 
@@ -28,10 +33,15 @@ for text_a in over18_text_list:
 common_url_list, common_short_url_list = get_page_url_common("Makeup", 2566)
 #output = pickle.dump(common_url_list, open("Gossiping_url_list.txt", "wb"))
 #common_url_list = pickle.load(open("Gossiping_url_list.txt", 'rb'))
+bar = progressbar.ProgressBar(max_value=progressbar.UnknownLength)
 common_text_list = []
 for i in range(0, len(common_url_list)):
-    text_data = get_meta_text_common(i, common_url_list)
-    common_text_list.append(text_data)
-    
+    bar.update(i)
+    try:
+        text_data = get_meta_text_common(i, common_url_list)
+        common_text_list.append(text_data)
+    except:
+        continue
+        
 for text_c in common_text_list:
     print(text_C)
